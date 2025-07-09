@@ -40,9 +40,7 @@
           <input x-model="formDescription" class="w-full text-gray-600 border-b border-gray-200 focus:outline-none" placeholder="Form description">
         </div>
         <div x-data="{ showMenu: false }" class="shrink-0">
-          <button @click="showMenu = !showMenu" class="bg-[#001f4d] text-white px-4 py-2 rounded-full">
-            ➕ Add
-          </button>
+          <button @click="showMenu = !showMenu" class="bg-[#001f4d] text-white px-4 py-2 rounded-full">➕ Add</button>
           <template x-if="showMenu">
             <div class="bubble-dropdown bg-white rounded shadow-lg p-4">
               <h2 class="text-lg font-semibold mb-2">Choose Field Type</h2>
@@ -198,14 +196,13 @@ function formApp() {
     },
     submitForm(event) {
       event.preventDefault();
-      const slug = this.formTitle.trim().toLowerCase().replace(/\s+/g, '-');
       const formData = {
         title: this.formTitle,
         description: this.formDescription,
         questions: this.questions
       };
       const query = encodeURIComponent(JSON.stringify(formData));
-      this.generatedUrl = `https://yourdomain.com/form?data=${query}`;
+      this.generatedUrl = `${location.origin}${location.pathname}?data=${query}`;
     }
   };
 }
